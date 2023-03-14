@@ -122,7 +122,7 @@ async function run() {
     const id = req.params.id;
     const query = { postId: id };
     const result = movieCommentCollection.find(query);
-    const cursor = await result.toArray();
+    const cursor = await result.limit(4).sort({ $natural: -1 }).toArray();
 
     res.send(cursor);
   });
